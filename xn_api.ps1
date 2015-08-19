@@ -75,11 +75,13 @@ None.
 C:\PS> XN-Logout
 #>
     If (($env:XN_URL) -and ($env:XN_TOKEN)){
-        XN Delete "/account"
+        XN Delete "/account" -Silent
     }
     $env:XN_URL=$null
     $env:XN_TOKEN=$null
     Write-Host "Successfully Logged Out"
+    return $null
+
 }
 
 function XN{
