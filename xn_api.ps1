@@ -39,7 +39,7 @@ C:\PS> XN-Login -base_url http://applianceserver.lightmesh.com -username "someus
 
     )
     $user=New-Object PSObject -Property @{
-        "email"=$username
+        "user_name"=$username
         "password"=$password
     }
     $post_data=New-Object PSObject -Property @{
