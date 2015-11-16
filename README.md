@@ -91,3 +91,28 @@ PS C:\ms_dns_import> Move-Item C:\Windows\system32\dns\lightmesh.local.txt $env:
 PS C:\ms_dns_import>  . .\dns_import.ps1; $ss=LM-DNS-Import -import_file $env:TEMP\lightmesh.local.txt -zone_name lightmesh.local -lm_import
 [2015-11-15T15:38:11Z] Imported Zone file at C:\Users\ADMINI~1\AppData\Local\Temp\lightmesh.local.dnsimport.0 Created/Updated:  4 . Job ID:  /model/job_result/id/90439
 ```
+
+Options
+---------
+
+.PARAMETER import_file
+Path to DNS Zonefile to import. This must be in standard BIND or MS DNS Master Zone format. Slave zone files not accepted.
+Must contain a valid SOA header.
+
+.PARAMETER zone_name
+FQDN of the Zone SOA. e.g. lightmesh.com
+
+.PARAMETER dns_server_name
+[Optional] Define the DNS Server object in LightMesh to create or update. Defaults to the local hostname.
+    
+.PARAMETER lm_import
+[Optional] Switch defining whether to send the data to LightMesh
+
+.PARAMETER temp_dir
+[Optional] Path to temporary directory to store the split zone files. Defaults to $env:TEMP
+
+.PARAMETER batch_size
+[Optional] Number of records to import at once. Defaults to 100. Large numbers of records can cause Timeouts.
+
+.PARAMETER continue_on_error
+[Optional] Set to $false to exit script on any POST errors to LM. Defaults to $true
