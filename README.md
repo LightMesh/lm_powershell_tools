@@ -1,6 +1,7 @@
 LightMesh - Powershell Tools
 ========================================
 [DHCP Import](#dhcp)
+
 [DNS Import](#dns)
 
 DHCP
@@ -73,11 +74,9 @@ Purpose
 -------
 
 The LM-DNS-Import Cmdlet leverages a version of the XN Powershell Client tools.
-The Cmdlet works by uploading a Zonefile to Lightmesh for processing.
 
-Usage
-------
-Something
+The Cmdlet works by uploading Zonefiles to Lightmesh for processing.
+
 
 Example
 --------
