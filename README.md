@@ -1,7 +1,10 @@
-LightMesh - Microsoft DHCP Server Import
+LightMesh - Powershell Tools
 ========================================
+[DHCP Import](#dhcp)
+[DNS Import](#dns)
 
- 
+DHCP
+========================================
 
 Purpose
 -------
@@ -63,3 +66,29 @@ display_name : update_all_scopes
 PS C:\lm_ms_dhcp_import> XN-Logout
 Successfully Logged Out
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+DNS
+========================================
+Purpose
+-------
+
+The LM-DNS-Import Cmdlet leverages a version of the XN Powershell Client tools.
+The Cmdlet works by uploading a Zonefile to Lightmesh for processing.
+
+Usage
+------
+Something
+
+Example
+--------
+```
+PS C:\ms_dns_import> . .\xn_api.ps1
+PS C:\ms_dns_import> XN-Login -username "dns_user@lightmesh.com" -password "SomethingComplex" -base_url "https://app001.lightmesh.com/"
+PS C:\ms_dns_import> dnscmd . /ZoneExport lightmesh.local lightmesh.local.txt
+DNS Server . exported zone
+  lightmesh.local to file C:\Windows\system32\dns\lightmesh.local.txt
+Command completed successfully.
+PS C:\ms_dns_import> Move-Item C:\Windows\system32\dns\lightmesh.local.txt $env:TEMP
+PS C:\ms_dns_import>  . .\dns_import.ps1; $ss=LM-DNS-Import -import_file $env:TEMP\lightmesh.local.txt -zone_name lightmesh.local -lm_import
+[2015-11-15T15:38:11Z] Imported Zone file at C:\Users\ADMINI~1\AppData\Local\Temp\lightmesh.local.dnsimport.0 Created/Updated:  4 . Job ID:  /model/job_result/id/90439
+```
