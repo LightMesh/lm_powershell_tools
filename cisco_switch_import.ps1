@@ -26,11 +26,18 @@ function Cisco-Import{
 ADD DOCS
 #>
 
+#TODO: set the path and server values for cisco prime servers
 $path='/ciscoprime/uri/here'
 $server='ciscoprimeserverhere'
 #add any headers for ciscoprime request here
+
+#TODO: see if any headers are needed for data request
 #$headers=@{"AUTHORIZATION"=$env:XN_TOKEN; "accept"="application/json, text/javascript"}
 $data=Invoke-RestMethod -Uri $cisco_prime_server$path -Method Get -ContentType "application/json" -Headers $headers}
+
+#TODO: see if multiple requests should be made to push the data in smaller segments
+
+#TODO: add error checking to catch 400's from cisco prime as well as any from import job to LM
 
 XN POST '/model/switch/job/import_cisco_prime' $data
 }
