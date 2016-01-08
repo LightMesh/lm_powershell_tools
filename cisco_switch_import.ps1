@@ -1,4 +1,4 @@
-﻿function LM-CISCO-PRIME-SWITCH-Import{
+﻿function LM-Cisco-Prime-Switch-Import{
 <#
 .SYNOPSIS 
 Pulls data regarding switches from the cisco prime api and imports them into LightMesh.
@@ -8,32 +8,42 @@ This Cmdlet is used to import cisco prime switch data into Lightmesh.
 The import creates or updates the following record types and creates valid relationships.
 TODO: Add records and rels that get updated here
 
-.INPUTS
-None. You cannot pipe objects to the script.
-
 .PARAMETER cisco_prime_server
 Full URL to the Cisco Prime Server
+
+.PARAMETER cisco_url
+URI for the cisco prime request 
+
+.PARAMETER datafile
+Optionally provide a datafile insteaf of pulling data directly from a cisco prime api
+
+.INPUTS
+None. You cannot pipe objects to the script.
 
 .OUTPUTS
 None. 
 
 .EXAMPLE
-TODO: add example here
-#>
+. ./xn-api.ps1
+XN-Login -username "USER" -password "yoursecurepassword"
+. ./cisco_switch_import.ps1
+LM-Cisco-Prime-Switch-Import -cisco_prime_server "1.1.1.1" -cisco_url "/v1/clientdetails"
 
-function Cisco-Import{
 <#
 ADD DOCS
 #>
+    [CmdletBinding()]
+    Param (
+        [Parameter(Mandatory=$true)]
+        [string]$cisco_prime_server,
 
-#TODO: set the path and server values for cisco prime servers
-$path='/ciscoprime/uri/here'
-$server='ciscoprimeserverhere'
-#add any headers for ciscoprime request here
+        [Parameter(Mandatory=$true)]
+        [string]$cisco_prime_url,
 
-#TODO: see if any headers are needed for data request
-#$headers=@{"AUTHORIZATION"=$env:XN_TOKEN; "accept"="application/json, text/javascript"}
-$data=Invoke-RestMethod -Uri $cisco_prime_server$path -Method Get -ContentType "application/json" -Headers $headers}
+        [Parameter(Mandatory=$false)]
+        [string]$datafile
+
+#$data=Invoke-RestMethod -Uri $cisco_prime_server$cisco_url -Method Get -ContentType "application/json"}
 
 #TODO: see if multiple requests should be made to push the data in smaller segments
 
