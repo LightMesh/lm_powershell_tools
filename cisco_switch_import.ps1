@@ -49,5 +49,5 @@ ADD DOCS
 
 #TODO: add error checking to catch 400's from cisco prime as well as any from import job to LM
 
-XN POST '/model/switch/job/import_cisco_prime' $data
+XN POST '/is/switch/job/import_cisco_prime' $data
 }
